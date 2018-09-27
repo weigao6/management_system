@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+		<#include "/header.html">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+			<#if shiro.hasPermission("customer:ssysuser:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			</#if>
+			<#if shiro.hasPermission("customer:ssysuser:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			</#if>
+			<#if shiro.hasPermission("customer:ssysuser:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal">
+														                    <div class="form-group">
+                        <div class="col-sm-2 control-label">用户类型</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="sSysUser.userType" placeholder="1-个人，2-企业"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">签名公钥</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="sSysUser.pubKey" placeholder="签名公钥（仅用来验证报文的有效性，不需要存留多份）"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">服务状态</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="sSysUser.serviceState" placeholder="0-停用，1-正常"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">签章服务状态</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="sSysUser.signService" placeholder="自研签章开关0-停用，1-正常"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">用户状态</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="sSysUser.userState" placeholder="0-注销，1-正常，2-冻结,3-删除"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">创建时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="sSysUser.createTime" placeholder="创建时间"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">更新时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="sSysUser.updateTime" placeholder="更新时间"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">ip地址</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="sSysUser.ipAddress" placeholder="绑定ip地址，数组的json格式"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">回调地址</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="sSysUser.pushUrl" placeholder="用户回调地址"/>
+                        </div>
+                    </div>
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/customer/ssysuser.js?_${.now?long}"></script>
+</body>
+</html>

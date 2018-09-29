@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 人人开源 http://www.renren.io
+ * Copyright 2018
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,15 +19,24 @@ package io.renren.common.exception;
 /**
  * 自定义异常
  * 
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2016年10月27日 下午10:11:27
+ * @author weigao
+ * @email weigao_work@163.com
+ * @date 2018年9月27日 下午08:11:27
  */
 public class RRException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 	
     private String msg;
+	/**
+	 * 	发生异常
+ 	 */
     private int code = 500;
+
+    public RRException(RRExceptionCode rrExceptionCode) {
+        super(rrExceptionCode.msg());
+        this.code = rrExceptionCode.code();
+        this.msg = rrExceptionCode.msg();
+    }
     
     public RRException(String msg) {
 		super(msg);
@@ -66,6 +75,5 @@ public class RRException extends RuntimeException {
 	public void setCode(int code) {
 		this.code = code;
 	}
-	
-	
+
 }

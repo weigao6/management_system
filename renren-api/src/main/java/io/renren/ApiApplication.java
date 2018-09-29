@@ -1,12 +1,13 @@
 package io.renren;
 
+import com.cxytiandi.encrypt.anno.EnableEncrypt;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
-
+@EnableEncrypt
 @SpringBootApplication
 @MapperScan(basePackages = {"io.renren.dao"})
 public class ApiApplication extends SpringBootServletInitializer {

@@ -1,6 +1,8 @@
 package io.renren.controller;
 
 
+import com.cxytiandi.encrypt.anno.Decrypt;
+import com.cxytiandi.encrypt.anno.Encrypt;
 import io.renren.annotation.Login;
 import io.renren.annotation.MethodLog;
 import io.renren.common.utils.R;
@@ -38,6 +40,8 @@ public class ApiLoginController {
     private TokenService tokenService;
 
 
+    @Encrypt
+    @Decrypt
     @PostMapping("login")
     @ApiOperation("登录")
     @MethodLog(value = "登录api", printParam = true)

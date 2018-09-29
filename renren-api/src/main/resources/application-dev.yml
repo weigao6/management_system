@@ -31,3 +31,8 @@ spring:
         wall:
           config:
             multi-statement-allow: true
+  encrypt:
+    #AES加解密密钥
+    key: abcdef0123456789
+    #是否启动加解密开关
+    debug: false

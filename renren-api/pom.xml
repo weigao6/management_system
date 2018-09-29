@@ -16,6 +16,11 @@
 	<dependencies>
 		<dependency>
 			<groupId>io.renren</groupId>
+			<artifactId>renren-encrypt</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.renren</groupId>
 			<artifactId>renren-common</artifactId>
 			<version>3.2.0</version>
 		</dependency>

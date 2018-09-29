@@ -22,6 +22,8 @@ import io.renren.common.exception.RRException;
 import io.renren.entity.TokenEntity;
 import io.renren.service.TokenService;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
@@ -32,14 +34,16 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 权限(Token)验证
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2017-03-23 15:38
+ * @author wei.gao
+ * @email weigao_work@163.com
+ * @date 2018-09-23 15:38
  */
 @Component
 public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
     @Autowired
     private TokenService tokenService;
+
+    private static final Logger logger = LoggerFactory.getLogger(AuthorizationInterceptor.class);
 
     public static final String USER_KEY = "userId";
 
@@ -65,12 +69,15 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
 
         //token为空
         if(StringUtils.isBlank(token)){
+            logger.error("token不能为空");
             throw new RRException("token不能为空");
         }
 
         //查询token信息
         TokenEntity tokenEntity = tokenService.queryByToken(token);
+        logger.info("当前用户的token为：" + tokenEntity.getToken(), "用户id为：" + tokenEntity.getUserId());
         if(tokenEntity == null || tokenEntity.getExpireTime().getTime() < System.currentTimeMillis()){
+            logger.error("token失效，请重新登录");
             throw new RRException("token失效，请重新登录");
         }
 

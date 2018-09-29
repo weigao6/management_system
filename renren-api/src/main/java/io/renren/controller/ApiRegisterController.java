@@ -1,6 +1,7 @@
 package io.renren.controller;
 
 
+import io.renren.annotation.MethodLog;
 import io.renren.common.utils.R;
 import io.renren.common.validator.ValidatorUtils;
 import io.renren.entity.UserEntity;
@@ -19,9 +20,9 @@ import java.util.Date;
 
 /**
  * 注册接口
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2017-03-26 17:27
+ * @author wei.gao
+ * @email weigao_work@163.com
+ * @date 2018-09-24 16:28
  */
 @RestController
 @RequestMapping("/api")
@@ -32,6 +33,7 @@ public class ApiRegisterController {
 
     @PostMapping("register")
     @ApiOperation("注册")
+    @MethodLog(value = "注册接口", printParam = true)
     public R register(@RequestBody RegisterForm form){
         //表单校验
         ValidatorUtils.validateEntity(form);

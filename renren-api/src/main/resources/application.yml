@@ -72,3 +72,7 @@ logging:
   level.io.renren: debug
   path: logs/
   file: api.log
+
+wechat:
+  appid: wxe29a77360efc3168
+  appsecret: fc633785c37fc05ca868f72919988f88

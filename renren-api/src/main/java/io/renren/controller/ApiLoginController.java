@@ -28,7 +28,7 @@ import java.util.Map;
  * @date 2018-09-24 16:28
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1.0/")
 @Api(tags="登录接口")
 public class ApiLoginController {
 
@@ -40,8 +40,8 @@ public class ApiLoginController {
     private TokenService tokenService;
 
 
-    @Encrypt
-    @Decrypt
+//    @Encrypt
+//    @Decrypt
     @PostMapping("login")
     @ApiOperation("登录")
     @MethodLog(value = "登录api", printParam = true)

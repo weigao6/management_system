@@ -25,7 +25,7 @@ import java.util.Date;
  * @date 2018-09-24 16:28
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1.0/")
 @Api(tags="注册接口")
 public class ApiRegisterController {
     @Autowired
@@ -43,6 +43,7 @@ public class ApiRegisterController {
         user.setUsername(form.getMobile());
         user.setPassword(DigestUtils.sha256Hex(form.getPassword()));
         user.setCreateTime(new Date());
+        user.setUpdateTime(new Date());
         userService.insert(user);
 
         return R.ok();

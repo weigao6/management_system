@@ -82,12 +82,13 @@ public class WeChatLoginController {
             return R.error("code无效或微信服务异常");
         }
         JSONObject userObj = JSON.parseObject(response);
-        int number = userObj.getInteger("errcode");
-        if(number != 0){
-            logger.error("code异常，code： " + number);
-            return R.error(userObj.getString("errmsg"));
-        }
+//        int number = userObj.getInteger("errcode");
+//        if(number != 0){
+//            logger.error("code异常，code： " + number);
+//            return R.error(userObj.getString("errmsg"));
+//        }
         WechatEntity wechatEntity = JSON.parseObject(response, WechatEntity.class);
+        wechatEntity.setSessionKey(userObj.getString("session_key"));
         //用户登录
 //        WechatEntity wechatEntity = new WechatEntity();
 //        wechatEntity.setOpenid("321123");
